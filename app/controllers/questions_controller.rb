@@ -10,8 +10,9 @@ class QuestionsController < ApplicationController
   end
 
   def create
+    @question = @test.questions.new(question_params)
     if @question.save
-      redirect_to action: 'index', id: @test.id
+      redirect_to action: 'index', id: @question.test_id
     else
       render :new
     end
