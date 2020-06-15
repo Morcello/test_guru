@@ -10,16 +10,11 @@ class QuestionsController < ApplicationController
   end
 
   def create
-<<<<<<< HEAD
     if @question.save
       redirect_to action: 'index', id: @test.id
     else
       render :new
     end
-=======
-    @test.questions.create(question_params)
-    redirect_to action: 'index', id: @test.id
->>>>>>> bc8f7ee9d4dc30aa593b1ea002b3ad905e17c50d
   end
 
   def show
