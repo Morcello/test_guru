@@ -1,9 +1,8 @@
-<footer>
-  <hr>
-    <h1>About the author Test Guru</h1>
-    <p><b>Timur Pavlov</b></p>
-    <%= link_to 'Test-Guru. link to GitHub', github_url('Timur Pavlov', 'test_guru') %><br>
-    <a href="https://thinknetica.com/" target="_blank">website Thinknetica</a><br>
-    <%= current_year %>
-  <hr>
-</footer>
+<div class="footer" align="center">
+  <div>TestGuru<span><%= footer_year %></span></div>
+  <div>About the author Test Guru</div>
+  <div>Educational project in an online school
+    <span><a href="http://thinknetica.com/" target="_blank">Thinknetica</a></span>
+  </div>
+  <%= github_url('Timur Pavlov', "https://github.com/Morcello/test_guru") %>
+</div>
