@@ -10,7 +10,8 @@ class QuestionsController < ApplicationController
   def create
     @question = @test.questions.new(question_params)
     if @question.save
-      redirect_to action: 'index', id: @question.test_id
+      #redirect_to action: 'index', id: @question.test_id
+      redirect_to @question.test
     else
       render :new
     end
@@ -25,7 +26,7 @@ class QuestionsController < ApplicationController
 
   def update
     if @question.update(question_params)
-      redirect_to test_path(@question.test)
+      redirect_to @question.test
     else
       render :edit
     end
