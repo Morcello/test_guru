@@ -4,20 +4,28 @@ class User < ApplicationRecord
          :recoverable,
          :rememberable,
          :validatable,
-         :confirmable,
-         :trackable
+         :confirmable
 
+  has_many :created_tests, class_name: "Test", foreign_key: :user_id, dependent: :nullify
   has_many :test_passages
-  has_many :tests, through: :test_passages, dependent: :destroy
-  has_many :created_tests, class_name: 'Test', foreign_key: :author_id, dependent: :destroy
+  has_many :tests, through: :test_passages
+  has_many :gists, dependent: :destroy
 
-  validates :email, uniqueness: true
-
-  def tests_by_level(level)
-    tests.by_level(level)
-  end
+  validates :email, uniqueness: true, format: { with: /.+@.+\..+/i }
 
   def test_passage(test)
-    test_passages.order(id: :desc).find_by(test: test)
+    test_passages.order(id: :desc).find_by(test_id: test.id)
   end
+
+  def tests_passage(level)
+    Test
+      .joins(:test_passages)
+      .where(test_passages: {user_id: id})
+      .by_level(level)
+  end
+
+  def admin?
+    is_a?(Admin)
+  end
+
 end
