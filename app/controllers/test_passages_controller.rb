@@ -1,11 +1,24 @@
 class TestPassagesController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_test_passage, only: %i[show update result]
+  before_action :find_test_passage, only: %i[show update result gist]
 
   def show
   end
 
   def result
+  end
+
+  def gist
+    service = GistQuestionService.new(@tests_passages.current_question, OctoKitClient.new)
+    answer = service.call
+
+    flash_options = if service.client.success?
+      { notice: t('.sucess', gist_url: answer[:html_url] }
+    else
+      { alert: t('.failure') }
+    end
+
+    redirect_to @tests_passages, flash_options
   end
 
   def update
@@ -25,4 +38,7 @@ class TestPassagesController < ApplicationController
     @test_passage = TestPassage.find(params[:id])
   end
 
+  def create_gist(gist_url)
+    current_user.gist.create(question: @tests_passages.current_question, url: gist_url)
+  end
 end
