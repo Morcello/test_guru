@@ -1,5 +1,3 @@
 <% flash.each do |key, message| %>
-  <div class="<%= flash_class(key) %>">
-    <%= sanitize(message) %>
-  </div>
+  <%= content_tag :p, message, class: "flash #{key}" %>
 <% end %>
