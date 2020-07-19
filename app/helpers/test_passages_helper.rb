@@ -1,6 +1,7 @@
 module TestPassagesHelper
-  def result_message(test_passage)
-    action = test_passage.success? ? 'completed' : 'failed'
-    "You #{action} the test."
+  def progress_result
+    if @tests_passages.test.questions.count > 0
+      (@tests_passages.question_num - 1) * 100 / @tests_passages.test.questions.count
+    end
   end
 end

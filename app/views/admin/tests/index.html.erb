@@ -1,24 +1,20 @@
-<div class="row justify-content-center mt-3">
-  <div class="col col-md-10 ">
-    <h1 align=center><%= t('.header') %></h1>
+<%= render 'shared/errors', resource: @test %>
+  <div class="table-responsive">
+    <h2><%= t('.header') %></h2>
+      <table class="table mt-3">
+        <tr class="table">
+          <th class="sort-by-title pointer">
+            <%= t('.title') %>
+            <%= octicon 'arrow-up', class: 'text-success hide' %>
+            <%= octicon 'arrow-down', class: 'text-success hide' %>
+          </th>
+          <th><%= t('.level') %></th>
+          <th><%= t('.questions') %></th>
+          <th colspan="4"><%= t('.actions') %></th>
+        </tr>
 
-    <table class="table">
-      <tr>
-        <th class="sort-by-title pointer">
-          <%= t('.title') %>
-          <%= octicon 'arrow-up', class: 'text-success hide' %>
-          <%= octicon 'arrow-down', class: 'text-success hide' %>
-        </th>
-        <th><%= t('.level') %></th>
-        <th><%= t('.questions_number') %></th>
-        <th colspan="3"><%= t('.action') %></th>
-      </tr>
+        <%= render @tests %>
 
-      <%= render @tests %>
-    </table>
-
-    <p>
-      <%= link_to t('.new'), new_admin_test_path %>
-    </p>
+      </table><br>
+      <%= link_to t('.create'), new_admin_test_path %>
   </div>
-</div>
