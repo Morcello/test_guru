@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'gists/index'
   end
-
   devise_for :users, path: :gurus, path_names: { sign_in: :login, sign_out: :logout },
     controllers: { sessions: 'users/sessions' }
 
@@ -34,9 +33,12 @@ Rails.application.routes.draw do
     resources :gists, only: :index
 
     resources :tests do
+      patch :update_inline, on: :member
+
       resources :questions, shallow: true, expect: :index do
         resources :answers, shallow: true, expect: :index
       end
     end
   end
+
 end
