@@ -1,0 +1,9 @@
+2020-07-25 14:34:29.812 MSK [36563] LOG:  listening on IPv6 address "::1", port 5432
+2020-07-25 14:34:29.812 MSK [36563] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2020-07-25 14:34:29.813 MSK [36563] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2020-07-25 14:34:29.823 MSK [36564] LOG:  database system was shut down at 2020-07-25 14:33:59 MSK
+2020-07-25 14:34:29.827 MSK [36563] LOG:  database system is ready to accept connections
+2020-07-25 14:34:51.682 MSK [36613] FATAL:  database "test_guru_development" does not exist
+2020-07-25 14:34:52.931 MSK [36616] FATAL:  database "test_guru_development" does not exist
+2020-07-25 14:35:47.616 MSK [36683] ERROR:  column "user_id" does not exist
+2020-07-25 14:35:47.616 MSK [36683] STATEMENT:  CREATE  INDEX  "index_tests_on_user_id" ON "tests"  ("user_id")
