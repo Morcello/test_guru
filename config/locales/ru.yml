@@ -1,88 +1,131 @@
 ru:
-  hello: 'Привет, Мир!'
-
+  tests:
+    test:
+      start: "Старт"
+    index:
+      header: "Доступные тесты"
+      title: "Название"
+      level: "Уровень"
+      questions_number: "Количество вопросов"
+      action: "Действие"
+  author: "Александр Зимин"
+  project: "Учебный проект в онлайн-школе Thinknetica"
+  admin:
+    tests:
+      form_inline:
+        submit: "Ок"
+      index:
+        header: "Доступные тесты"
+        title: "Название"
+        level: "Уровень"
+        questions_number: "Количество вопросов"
+        action: "Действия"
+        new: "Создать новый тест"
+      new:
+        back: "Назад"
+      test:
+        show: "Показать"
+        edit: "Редактировать"
+        delete: "Удалить"
+        are_you_sure: "Вы уверены?"
+      edit:
+        back: "Назад"
+      show:
+        test: "Тест: %{test}"
+        test_title: "Текст вопроса"
+        test_level: "Уровень"
+        question_body: "Текст вопроса"
+        test_questions: "Вопросы теста %{test}"
+        actions: "Действия"
+        new_question: "Новый вопрос"
+        edit: "Редактировать тест"
+        back: "Назад"
+    questions:
+      edit:
+        back: "Назад"
+      show:
+        edit: "Редактировать вопрос"
+        back: "Назад"
+        question: "Вопрос"
+      question:
+        show: "Показать"
+        edit: "Редактировать"
+        delete: "Удалить"
+        are_you_sure: "Вы уверены?"
+      new:
+        back: "Назад"
+    gists:
+      description: "Вопрос от теста %{title}"
+      index:
+        header: "Gists пользователей"
+        question: "Вопрос"
+        url: "Ссылка"
+        user: "Пользователь"
+    nav:
+      testguru_admin_panel: "Панель администратора ТестГуру"
+      testguru: "Test Guru"
+      log_out: "Выход"
+      welcome: "Добро пожаловать, %{name}"
+  test_passages:
+    show:
+      question: "Вопрос"
+      next: "Следующий"
+    result:
+      test_completed: "Тест \"%{test}\" завершен!"
+      passed: "Тест пройден!"
+      failed: "Тест не пройден!"
+      result: "Ваш результат: %{result}% правильных ответов"
+      back: "Назад"
+    gist:
+      success: "Gist успешно сохранен!"
+      failure: "Во время сохранения Gist произошла ошибка!"
   helpers:
     submit:
       test:
         create: "Создать тест"
         update: "Обновить тест"
+      question:
+        create: "Создать вопрос"
+        update: "Редактировать вопрос"
     label:
       test:
         title: "Название"
-        level: "Уровень сложности"
+        level: "Уровень"
         category_id: "Категория"
     select:
-      prompt: "Выберите категорю"
-
-
+      prompt: "Пожалуйста, выберите"
+  layouts:
+    admin:
+      admin_panel: "Панель администратора, ТестГуру"
+      project: "ТестГуру"
+    application:
+      testguru: "ТестГуру"
+      welcome: "Добро пожаловать, %{name}!"
+      log_in: "Войти"
+      log_out: "Выйти"
+      sign_up: "Заргистрироваться"
   shared:
+    nav:
+      testguru_admin_panel: "Панель администратора ТестГуру"
+      project: "ТестГуру"
     errors:
       header:
-        one: "Обнаружена %{count} ошибка"
-        many: "Обнаружено %{count} ошибок"
         few: "Обнаружено %{count} ошибки"
+        many: "Обнаружено %{count} ошибок"
+        one: "Обнаружена %{count} ошибка"
         other: "Обнаружено %{count} ошибки"
-
-  tests:
-    index:
-      header: "Список тестов"
-      title: "Название"
-      level: "Уровень"
-      questions: "Кол-во вопросов"
-    test:
-      start: "Начать"
-
-
-  test_passages:
-    result:
-      header: "Тест %{title} завершен!"
+  create_new_test: "Создать новый тест"
+  edit_test: "Редактировать тест %{title}"
+  welcome: "Добро пожаловать, %{name}!"
+  feedback: "Отправить отзыв"
+  feedbacks:
+    new:
+      feedback: "Новый отзыв"
+      back: "Назад"
+    form:
+      create_feedback: "Создать отзыв"
+    create:
+      feedback_was_created: "Отзыв был успешно создан"
     show:
-      header: "Прохождение %{title} теста"
-    gist:
-      success: "Gist успешно сохранён! <a href='%{gist_url}' target='_blank'>Ссылка</a>"
-      failure: "Во время сохранения gist произошла ошибка."
-
-  admin:
-    nav:
-      header: "панель администратора"
-      welcome: "Добро пожаловать"
-      exit: "Выйти"
-    base:
-      admin_require:
-        norights: "У вас недостаточно прав."
-    tests:
-      create:
-        success: "Тест успешно создан."
-      index:
-        header: "Список тестов"
-        title: "Название"
-        level: "Уровень"
-        questions: "Кол-во вопросов"
-        actions: "Действия"
-        create: "Создать новый тест"
-      edit:
-        header: "Редактировать %{title} тест"
-      new:
-        header: "Создать новый тест"
-      test:
-        show: "Показать"
-        edit: "Редактировать"
-        delete: "Удалить"
-      form:
-        back: "Назад"
-      form_inline:
-        submit: "Ок"
-
-  users:
-    sessions:
-      create:
-        hello: "Здравствуйте, %{name}"
-
-
-  test_mailer:
-    completed_test:
-      subject: "Вы прошли TestGuru."
-
-  services:
-    gist_params:
-      question_description: "Вопрос о %{title} от TestGuru"
+      body: "Отзыв"
+      root_path: "Главная страница"

@@ -6,7 +6,6 @@ en:
     attributes:
       test:
         title: "Title"
-        category_id: "Category"
 
     errors:
       messages:
