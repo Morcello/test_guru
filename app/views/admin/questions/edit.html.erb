@@ -1,2 +1,4 @@
-<%= question_header(@question) %>
+<h1>Edit <%= @question.test.title %> Question</h1>
+
 <%= render 'form' %>
+<%= link_to t('.back'), admin_test_path(@question.test) %>

@@ -1,34 +1,32 @@
 class Admin::QuestionsController < Admin::BaseController
-
-  before_action :find_test, only: %i[create new]
-  before_action :find_question, only: %i[edit show destroy update]
-
-  # rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
+  before_action :find_question, only: %i(show destroy edit update)
+  before_action :find_test, only: %i(index edit destroy)
+  rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
 
   def new
+    @test = Test.find(params[:test_id])
     @question = @test.questions.new
   end
 
-  def edit
+  def show
+  end
 
+  def edit
   end
 
   def create
+    @test = Test.find(params[:test_id])
     @question = @test.questions.new(question_params)
     if @question.save
-      redirect_to admin_test_path(@question.test)
+      redirect_to admin_question_path(@question)
     else
       render :new
     end
   end
 
-  def show
-
-  end
-
   def update
     if @question.update(question_params)
-      redirect_to admin_test_path(@question.test)
+      redirect_to admin_question_path(@question)
     else
       render :edit
     end
@@ -36,24 +34,25 @@ class Admin::QuestionsController < Admin::BaseController
 
   def destroy
     @question.destroy
-    redirect_to admin_test_path(@question.test)
+    redirect_to admin_test_path(@test)
   end
 
   private
 
   def question_params
-    params.require(:question).permit(:body)
-  end
-
-  def find_test
-    @test = Test.find(params[:test_id])
+    params.require(:question).permit(:question)
   end
 
   def find_question
     @question = Question.find(params[:id])
   end
 
-  def rescue_with_question_not_found
-    render plain: 'Question was not found'
+  def find_test
+    @test = @question.test
+  end
+
+  def resque_question_not_found
+    response.status = 404
+    response.body 'Question not found!'
   end
 end

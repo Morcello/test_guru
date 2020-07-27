@@ -1,4 +1,4 @@
-document.addEventListener('turbolinks:load', function () {
+document.addEventListener('turbolinks:load', function() {
   var control = document.querySelector('.sort-by-title')
 
   if (control) { control.addEventListener('click', sortRowsByTitle) }
@@ -12,7 +12,7 @@ function sortRowsByTitle() {
   var rows = table.querySelectorAll('tr')
   var sortedRows = []
 
-  // select all table rows except the first one which is the header
+  //select all table rows except the first one which is the header
   for (var i = 1; i < rows.length; i++) {
     sortedRows.push(rows[i])
   }

@@ -1,21 +1,20 @@
 class Test < ApplicationRecord
-  belongs_to :category
-  belongs_to :author, class_name: 'User'
-  has_many :questions, dependent: :destroy
-  has_many :test_passages, dependent: :destroy
+  has_many :test_passages
   has_many :users, through: :test_passages
+  has_many :questions
+  belongs_to :category
+  belongs_to :user, class_name: 'User', foreign_key: :user_id
 
-  validates :title, presence: true
-  validates :level, numericality: { only_integer: true, greater_than: 0 },
-                    uniqueness: { scope: :title }
-
-  scope :easy, -> { by_level(0..1) }
+  scope :by_level, -> (level) { where(level: level) }
+  scope :simple, -> { by_level(0..1) }
   scope :medium, -> { by_level(2..4) }
-  scope :hard, -> { by_level(5..Float::INFINITY) }
-  scope :by_category, ->(name) { joins(:category).where(categories: { title: name }).order(title: :desc) }
-  scope :by_level, ->(level) { where(level: level) }
+  scope :complicated, -> { by_level (5..FLOAT::INFINITY) }
+  scope :with_category, -> (category_name) { joins(:category).where(categories: { title: category_name }) }
 
-  def self.titles_by_category(name)
-    by_category(name).pluck(:title)
+  validates :level, numericality: { only_integer: true, greater_than: 0 }
+  validates :title, presence: true, uniqueness: { scope: :level }
+
+  def self.name_tests(category_name)
+    with_category(category_name).order(id: :desc).pluck(:title)
   end
 end

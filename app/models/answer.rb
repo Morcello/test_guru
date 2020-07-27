@@ -1,14 +1,14 @@
 class Answer < ApplicationRecord
   belongs_to :question
 
-   validates :body, presence: true
-   validate :validate_answers_amount, on: :create
+  validates :answer, presence: true
+  validate :max_answer_count, on: :create
 
-   scope :correct, -> { where(correct: true) }
+  scope :correct, -> { where(correct: true) }
 
-   def validate_answers_amount
-     if question.answers.size > 4
-       errors.add(:answers, 'question must contain up to 4 answers')
-     end
-   end
- end
+  private
+
+  def max_answer_count
+    errors.add(:question, "fail") if question.answers.count >= 4
+  end
+end

@@ -1,17 +1,20 @@
-<h1>Gists list</h1>
-
-<div class="table-resposive">
-  <table class="table mt-3">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>User</th>
-        <th>Question</th>
-        <th>Gist link</th>
-      </tr>
-    </thead>
-
-    <%= render @gists %>
-  </table>
+<div class="row justify-content-center mt-3">
+  <h1><%= t('.header') %></h1>
 </div>
-<%= link_to 'Back', admin_tests_path %>
+
+<div class="row justify-content-center">
+  <div class="align-item-center col col-md-6">
+
+    <table class="table">
+      <thead>
+      <th><%= t('.question') %></th>
+      <th><%= t('.url') %></th>
+      <th><%= t('.user') %></th>
+      </thead>
+
+      <tbody>
+      <%= render @gists %>
+      </tbody>
+    </table>
+  </div>
+</div>

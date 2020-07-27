@@ -1,7 +1,5 @@
 class Category < ApplicationRecord
-  default_scope { order(:title) }
-
-  has_many :tests, dependent: :nullify
-
-  validates :title, presence: true
+  has_many :tests
+  default_scope { order(category: :asc) }
+  validates :category, presence: true
 end

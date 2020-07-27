@@ -3,11 +3,12 @@ class TestsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_test, only: %i[start]
 
-  def index
+ def index
     @tests = Test.all
   end
 
   def start
+    #byebug
     current_user.tests.push(@test)
     redirect_to current_user.test_passage(@test)
   end
@@ -17,4 +18,4 @@ class TestsController < ApplicationController
   def find_test
     @test = Test.find(params[:id])
   end
- end
+end

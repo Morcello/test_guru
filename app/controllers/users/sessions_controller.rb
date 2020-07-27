@@ -1,7 +1,11 @@
 class Users::SessionsController < Devise::SessionsController
 
-  def create
-    super
-    flash[:notice] = t('.hello', name: current_user.first_name)
+  after_action :set_greeting, only: :create
+
+  private
+
+  def set_greeting
+    flash[:notice] = t('welcome', name: current_user.first_name)
   end
+
 end

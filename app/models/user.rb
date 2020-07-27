@@ -3,29 +3,28 @@ class User < ApplicationRecord
          :registerable,
          :recoverable,
          :rememberable,
+         :trackable,
          :validatable,
          :confirmable
 
-  has_many :created_tests, class_name: "Test", foreign_key: :user_id, dependent: :nullify
   has_many :test_passages
   has_many :tests, through: :test_passages
-  has_many :gists, dependent: :destroy
+  has_many :made_tests, class_name: 'Test', foreign_key: :user_id
+  has_many :gists
+  has_many :feedbacks
 
-  validates :email, uniqueness: true, format: { with: /.+@.+\..+/i }
+  VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
+  validates :email, presence: true, format: { with: VALID_EMAIL}, uniqueness: { case_sensetive: true }
+
+  def tests_by_level(level)
+    tests.by_level(level)
+  end
 
   def test_passage(test)
     test_passages.order(id: :desc).find_by(test_id: test.id)
   end
 
-  def tests_passage(level)
-    Test
-      .joins(:test_passages)
-      .where(test_passages: {user_id: id})
-      .by_level(level)
-  end
-
   def admin?
-    is_a?(Admin)
+    self.is_a?(Admin)
   end
-
 end
