@@ -7,9 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 users = User.create!([
-  { username: 'Admin', password: 'admin' },
-  { username: 'luciy', password: 'light' }
+  { first_name: 'Admin', password: 'admin605', email: 'brillertv@gmail.com' },
+  { first_name: 'luciy', password: 'luciy605', email: 'brillertv2@gmail.com' }
 ])
+
+  admins = Admin.create([
+    { first_name: 'Tim', last_name: 'Pavlov', email: 'brillertv@gmail.com', password: 'lot123456', type: 'Admin' }
+  ])
 
 categories = Category.create!([
   { title: 'Лучший актер' },
