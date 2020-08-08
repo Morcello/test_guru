@@ -29,10 +29,10 @@
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= octicon 'key', class: 'hide' %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %><br />
   </div>
 
-  <div class="actions">
+  <div class="actions"><br />
     <%= f.submit t('.register') %>
   </div>
 <% end %>
