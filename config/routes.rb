@@ -1,25 +1,20 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'gists/index'
-  end
-  devise_for :users, path: :gurus, path_names: { sign_in: :login, sign_out: :logout },
-    controllers: { sessions: 'users/sessions' }
+  devise_for :users, path: :gurus, path_names: { sign_in: :login, sign_out: :logout }, controllers: {registrations: 'registrations', sessions: 'users/sessions'}
 
-
-  get 'users/new'
   root 'tests#index'
 
-  authenticated :admin do
-    root 'admin/tests#index', as: :authenticated_root
+  resources :feedbacks, only: %i[new create] do
+    member do
+      get :new
+      post :create
+    end
   end
 
   resources :tests, only: :index do
-    resources :questions, only: :index, shallow: true, expect: :index do
-      resources :answers, only: :index, shallow: true, expect: :index
+    member do
+      post :start
     end
-
-    post :start, on: :member
   end
 
   resources :test_passages, only: %i[show update] do
@@ -30,15 +25,13 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :gists, only: :index
-
     resources :tests do
       patch :update_inline, on: :member
-
-      resources :questions, shallow: true, expect: :index do
-        resources :answers, shallow: true, expect: :index
+      resources :questions, shallow: true, except: :index do
+        resources :answers, shallow: true, except: :index
       end
     end
+    resources :gists, shallow: true, only: :index
+    resources :feedbacks, only: %i[index destroy]
   end
-
 end
