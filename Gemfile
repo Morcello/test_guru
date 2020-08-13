@@ -39,6 +39,8 @@ gem 'jquery-rails'
 gem 'bootstrap', '~> 4.5.0'
 gem 'octicons_helper'
 
+gem 'uglifier'
+
 gem 'faraday'
 
 group :development do
