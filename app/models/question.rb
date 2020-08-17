@@ -1,7 +1,7 @@
 class Question < ApplicationRecord
+  has_many :answers
+  has_many :gists
   belongs_to :test
-  has_many :answers, dependent: :destroy
-  has_many :gists, dependent: :destroy
 
-  validates :body, presence: true
+  validates :question, presence: true
 end

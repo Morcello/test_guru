@@ -52,7 +52,7 @@ en:
   tests:
     index:
       header: "Tricky Tests"
-    author: "Alexandr Zimin"
+    author: "Timur Pavlov"
 
   test_passages:
     result:
@@ -73,3 +73,10 @@ en:
   tests_mailer:
     completed_test:
       subject: "You just completed the TestGuru test!"
+
+  layouts:
+    admin:
+      admin_panel: "Admin panel, TestGuru"
+      project: "TestGuru"
+    application:
+      testguru: "TestGuru"
